@@ -1,4 +1,4 @@
-# Vareli Asset Management System
+# Resource Forge a **Asset Management System**
 
 ![cuisine-command Banner](https://img.shields.io/badge/Resource%20Forge-Your%20Asset%20Management-brightgreen?style=for-the-badge&logo=appveyor)  
 
@@ -17,9 +17,9 @@
 
 ## 🌟 Overview
 
-Vareli Asset Management is a **comprehensive, enterprise-level solution** for tracking, managing, and optimizing assets in an organization. Built with a robust **Java Spring Boot backend** and a **hybrid frontend** combining **Thymeleaf** for server-side rendering and **AngularJS** for dynamic client-side interactions, it supports the full lifecycle of physical and digital assets—from acquisition to disposal. A companion **Python tool** is included for automated system information collection.
+Resource Forge is a **comprehensive, enterprise-level solution** for tracking, managing, and optimizing assets in an organization. Built with a robust **Java Spring Boot backend** and a **hybrid frontend** combining **Thymeleaf** for server-side rendering and **AngularJS** for dynamic client-side interactions, it supports the full lifecycle of physical and digital assets—from acquisition to disposal. A companion **Python tool** is included for automated system information collection.
 
-With features for **financial tracking**, **maintenance contracts**, **insurance**, **subscriptions**, and **reporting**, Vareli streamlines operations, reduces manual errors, and ensures compliance through automation, auditing, and role-based access. Ideal for managing IT hardware, office equipment, or software licenses, Vareli delivers efficiency and insights.
+With features for **financial tracking**, **maintenance contracts**, **insurance**, **subscriptions**, and **reporting**, streamlines operations, reduces manual errors, and ensures compliance through automation, auditing, and role-based access. Ideal for managing IT hardware, office equipment, or software licenses, delivers efficiency and insights.
 
 This repository includes the complete backend source code (Java/Spring Boot), the Python collector script, and frontend templates/views integrating Thymeleaf and AngularJS.
 
@@ -44,7 +44,7 @@ This repository includes the complete backend source code (Java/Spring Boot), th
 
 ## 🔑 Key Features
 
-Vareli offers powerful tools for seamless asset management:
+Resource Forge offers powerful tools for seamless asset management:
 
 ### 📦 Asset Lifecycle Management
 - **Create & Update Assets**: Add details like serial numbers, purchase info, and depreciation. 📝
@@ -135,7 +135,7 @@ Automates registration by collecting Windows specs and posting to `/asset/api/sy
 
 ## 📥 Installation Guide
 
-1. **Clone**: `git clone https://github.com/yourusername/resource-forge.git` 📥
+1. **Clone**: `git clone https://github.com/rajsekharacharya/Resource-Forge` 📥
 2. **Backend**:
    - Edit `application.properties` for DB 🔧
    - `mvn clean install` 🛠️
@@ -193,7 +193,7 @@ Apache 2.0 - See [LICENSE](LICENSE) for details.
 
 ## 📧 Contact
 - **Author**: Rajsekhar Acharya
-- **Email**: rajsekhar.acharya@example.com (placeholder)
-- **GitHub**: [https://github.com/yourusername/resource-forge](https://github.com/yourusername/resource-forge)
+- **Email**: rajsekhar.acharya@gmail.com (placeholder)
+- **GitHub**: [https://github.com/rajsekharacharya/Resource-Forge](https://github.com/rajsekharacharya/Resource-Forge)
 
 ⭐ Star the repo if you find it useful!

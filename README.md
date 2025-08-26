@@ -1,6 +1,6 @@
-# Resource Forge a **Asset Management System**
+# Resource Forge a Asset Management System
 
-![cuisine-command Banner](https://img.shields.io/badge/Resource%20Forge-Your%20Asset%20Management-brightgreen?style=for-the-badge&logo=appveyor)  
+![Resource Forge](https://img.shields.io/badge/Resource%20Forge-Your%20Asset%20Management-brightgreen?style=for-the-badge&logo=appveyor)  
 
 [![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg?style=for-the-badge&logo=appveyor)](https://github.com/yourusername/resource-forge/releases)
 [![Java](https://img.shields.io/badge/Java-17%2B-orange.svg?style=for-the-badge&logo=java)](https://www.java.com/)

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html
+  th:replace="~{base-layout :: layout(~{::title},~{::style} != null ? ~{::style} : null,~{::section},~{::script} != null ? ~{::script} : null)}">
+
+<head>
+  <title>Subscription</title>
+  <style>
+    /* --- Pricing Plans --- */
+
+    .pricing-plans {
+      padding: 2em 0;
+      width: 100%;
+    }
+
+    .pricing-tables {
+      display: flex;
+      flex-flow: column;
+      padding-top: 1em;
+    }
+
+    .pricing-plan {
+      background-color: #f6f6f6;
+      border: 2px solid #ddd;
+      border-bottom: 2px solid #ddd;
+      display: block;
+      padding: 1em 0;
+      border-radius: 10px;
+      text-align: center;
+      width: 100%;
+      transition: transform 0.3s;
+    }
+
+    .pricing-plan:not(.pricing-plan:last-child) {
+      margin-right: 20px;
+    }
+
+    .pricing-plan:hover,
+    .plan-active.pricing-plan {
+      transform: scale(1.05);
+      z-index: 2;
+
+      .plan-price {
+        color: #1b8dc8;
+      }
+    }
+
+    .pricing-plan.selected-plan {
+      transform: scale(1.1);
+      z-index: 3;
+    }
+
+    .pricing-plan:first-child,
+    .pricing-plan:last-child {
+      background-color: #eee;
+    }
+
+    .no-flexbox .pricing-plan {
+      float: left;
+    }
+
+    .plan-title {
+      font-size: 1em;
+      letter-spacing: -0.05em;
+      margin: 0;
+      padding: 0.75em 1em 1.25em;
+      text-transform: uppercase;
+    }
+
+    .plan-cost {
+      background-color: white;
+      color: #77b9dd;
+      font-size: 1.25em;
+      font-weight: 700;
+      padding: 1.25em 1em;
+      text-transform: uppercase;
+    }
+
+    .plan-cost span {
+      display: none;
+    }
+
+    .plan-price {
+      font-size: 3em;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      margin-bottom: 0;
+    }
+
+    .plan-type {
+      border: 0.313em solid #ddd;
+      color: #999;
+      display: inline-block;
+      font-size: 0.75em;
+      margin: 0.75em 0 0 0.75em;
+      padding: 0.3em 0.4em 0.25em;
+      width: auto;
+    }
+
+    .plan-features {
+      margin: 0;
+      padding: 2em 1em 1em;
+    }
+
+    .plan-features li {
+      list-style-type: none;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 0.5em;
+      padding-bottom: 0.75em;
+      color: #555;
+      display: block;
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 0.8em;
+      font-weight: normal;
+      line-height: 1.3;
+    }
+
+    .plan-features li:before {
+      content: "✔";
+      margin-right: 7px;
+    }
+
+    .plan-features li span {
+      color: #bbb;
+    }
+
+    .plan-features li:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .plan-features h3 {}
+
+    .plan-features i {
+      font-size: 1.5em;
+    }
+
+    .plan-features i.icon-ok-squared {
+      color: #3aa14d;
+    }
+
+    .plan-features i.icon-cancel-circled {
+      color: darkred;
+    }
+
+    .btn-plan {
+      background-color: #77b9dd;
+      color: white;
+      max-width: 12em;
+    }
+
+    .cta {
+      background-color: #6cb507;
+    }
+
+    .cta2 {
+      background-color: #f50b0b;
+    }
+
+    @media (min-width: 400px) {
+      .pricing-plans {
+        padding-right: 2em;
+        padding-left: 2em;
+        width: 100%;
+      }
+
+      .featured-plan {
+        transform: scale(1.05);
+      }
+    }
+
+    @media (min-width: 33.75em) {
+      .pricing-plans .module-title {
+        margin-bottom: 1em;
+      }
+
+      .pricing-tables {
+        flex-flow: row wrap;
+      }
+
+      .pricing-plan {
+        flex-grow: 1;
+        width: calc(50% - 20px);
+      }
+
+      /* .pricing-plan:first-child {
+      border-right: 0;
+      border-bottom: 0;
+    } */
+
+      .featured-plan {
+        margin-top: 0.6em;
+        order: 0;
+      }
+
+      .pricing-plan:nth-child(3) {}
+
+      .pricing-plan:last-child {
+        border-top: 2px solid #ddd;
+        /* border-left: 0; */
+      }
+
+      .no-flexbox .pricing-plan {
+        width: calc(48% - 20px);
+      }
+
+      .plan-title {
+        font-size: 0.875em;
+      }
+    }
+
+    @media (min-width: 48em) {
+      .no-flexbox .pricing-plan {
+        width: calc(24% - 20px);
+      }
+
+      .plan-type {
+        font-size: 0.7em;
+        margin: 0.5em 0 0 1em;
+        padding-bottom: 0.2em;
+      }
+
+      .featured-ribbon {
+        font-size: 0.65em;
+      }
+    }
+
+    @media (min-width: 62em) {
+      .pricing-tables {
+        padding-top: 3em;
+      }
+
+      .pricing-plan {
+        flex-grow: 1;
+        width: calc(25% - 20px);
+      }
+
+      .featured-plan {
+        margin-top: 0;
+        order: 0;
+      }
+
+      .pricing-plan:first-child,
+      .pricing-plan:nth-child(2n) {
+        border-bottom: 2px solid #ddd;
+      }
+
+      .pricing-plan .plan-features span {
+        display: block !important;
+      }
+
+      .plan-cost {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: center;
+        font-size: 1em;
+      }
+
+      .plan-cost span {
+        color: #bbb;
+        font-size: 1.5em;
+        font-weight: 400;
+        padding-right: 0.15em;
+        padding-left: 0.15em;
+      }
+
+      .plan-price {
+        font-size: 3.25em;
+      }
+
+      .btn-plan {
+        font-size: 0.875em;
+      }
+
+      .featured-ribbon {
+        font-size: 0.45em;
+        left: -68px;
+        line-height: 25px;
+      }
+    }
+
+    @media (min-width: 75em) {
+      .plan-cost {
+        font-size: 1em;
+      }
+    }
+
+    @media (min-width: 100em) {
+      .pricing-tables {
+        margin: 0 auto;
+        max-width: 75.00em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section>
+
+    <div ng-app="SuperAdminManagment" ng-controller="SubscriptionController">
+      <!-- <div class="breadcrumb-container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a th:href="@{/homeSuperAdmin}"><span
+              class="icon-common icon-title-dashboard"></span> Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Subscription</li>
+      </ol>
+    </nav>
+  </div> -->
+
+      <div class="breadcrumb-container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a th:href="@{/home-super-admin}">
+                <span class="icon-common icon-breadcrumb icon-dashboard"></span><span>Dashboard</span>
+              </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              <span class="icon-common icon-breadcrumb icon-subscription"></span><span>Subscription</span>
+            </li>
+          </ol>
+        </nav>
+      </div>
+
+      <section class="pricing-plans">
+        <div class="pricing-tables">
+          <div class="pricing-plan" ng-repeat="plan in subscriptions" ng-class="{ 'plan-active': plan.status }">
+            <h2 class="plan-title">{{ plan.planName }}</h2>
+            <div class="plan-cost">
+              <p class="plan-price">₹{{ plan.price }}</p>
+              <span>/</span>
+              <p class="plan-type">YEARLY</p>
+            </div>
+            <ul class="plan-features">
+              <li><i class="ion-checkmark"> </i>Assets:{{ plan.asset }}</li>
+              <li><i class="ion-checkmark"> </i>Note:{{ plan.note }}</li>
+              <li ng-if="plan.planName !== 'Basic'"><i class="ion-checkmark"> </i>24/7 Tech Support</li>
+              <li ng-if="plan.planName === 'Custom'"><i class="ion-checkmark"> </i>Please Contact For Customize Plan
+              </li>
+            </ul>
+            <a class="btn btn-plan" ng-class="{ 'cta': plan.status,'cta2': plan.planRequest }" href=""
+              ng-click="!plan.status && requestPlan(plan.id)">
+              <span ng-if="plan.status">Active Plan</span>
+              <span ng-if="!plan.status && plan.planRequest">Requested Plan</span>
+              <span ng-if="!plan.status && !plan.planRequest">Request Plan</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+  <script src="private/superadmin.js"></script>
+
+</body>
+
+</html>

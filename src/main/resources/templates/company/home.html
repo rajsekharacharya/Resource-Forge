@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html
+  th:replace="~{base-layout :: layout(~{::title},~{::style} != null ? ~{::style} : null,~{::section},~{::script} != null ? ~{::script} : null)}">
+
+
+<head>
+  <title>Home</title>
+</head>
+
+<body>
+
+  <section>
+
+    <div ng-app="CompanyManagment" ng-controller="DashboardController">
+
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="report-container status-container">
+            <div class="status-wrapper">
+              <div class="row w-100">
+                <div class="col-sm-4 col-5">
+                  <div class="status-icon-wrapper wrapper-bg-warning">
+                    <span class="icon-common icon-report-status icon-total-company"></span>
+                  </div>
+                </div>
+                <div class="col-sm-8 col-7 pe-0">
+                  <div class="status-details-wrapper">
+                    <div class="status-header lbl-ellipsis">Total Company</div>
+                    <div class="status-count">{{data.CompanyData[0].total_companies}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="report-container status-container">
+            <div class="status-wrapper">
+              <div class="row w-100">
+                <div class="col-sm-4 col-5">
+                  <div class="status-icon-wrapper wrapper-bg-success">
+                    <span class="icon-common icon-report-status icon-active-subscription"></span>
+                  </div>
+                </div>
+                <div class="col-sm-8 col-7 pe-0">
+                  <div class="status-details-wrapper">
+                    <div class="status-header lbl-ellipsis">Active Subscription</div>
+                    <div class="status-count">{{data.CompanyData[0].active_subscription}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="report-container status-container">
+            <div class="status-wrapper">
+              <div class="row w-100">
+                <div class="col-sm-4 col-5">
+                  <div class="status-icon-wrapper wrapper-bg-alert">
+                    <span class="icon-common icon-report-status icon-inactive-subscription"></span>
+                  </div>
+                </div>
+                <div class="col-sm-8 col-7 pe-0">
+                  <div class="status-details-wrapper">
+                    <div class="status-header lbl-ellipsis">Inactive Subscription</div>
+                    <div class="status-count">{{data.CompanyData[0].inactive_subscription}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xxl-8">
+          <div class="report-container report-container-primary">
+            <div class="report-details-header">
+              Asset Status
+            </div>
+            <div class="chart-wrapper">
+              <canvas id="myBarChart"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-xxl-4 d-flex">
+          <div class="report-container report-container-xl flex-grow">
+            <div class="report-details-header">
+              Subscription Over View
+            </div>
+            <div class="chart-wrapper">
+              <canvas id="myDoughnutChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </section>
+  <script src="private/company.js"></script>
+
+</body>
+
+</html>

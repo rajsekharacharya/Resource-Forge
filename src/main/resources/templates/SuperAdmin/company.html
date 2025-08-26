@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html
+    th:replace="~{base-layout :: layout(~{::title},~{::style} != null ? ~{::style} : null,~{::section},~{::script} != null ? ~{::script} : null)}">
+
+<head>
+    <title>Company</title>
+</head>
+
+<body>
+
+    <section>
+
+        <div ng-app="SuperAdminManagment" ng-controller="CompanyController">
+            <div class="breadcrumb-container">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a th:href="@{/home-super-admin}">
+                                <span class="icon-common icon-breadcrumb icon-dashboard"></span><span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <span class="icon-common icon-breadcrumb icon-company"></span><span>Company</span>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="body-area" ng-show="views.list">
+                <div class="body-area-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="body-area-tittle">Company</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="body-area-action">
+                                <a ng-click="AddCompany()" class="float-end btn btn-icon btn-add me-2"
+                                    title="Add Company"><span class="icon-common icon-add"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="body-area-content">
+                    <div class="user-table-container">
+                        <table class="user-table-view" id="">
+                            <tr class="table-head-primary">
+                                <th>SL No.</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr ng-repeat="company in companies">
+                                <td>{{$index + 1}}</td>
+                                <td><span class="user-role">{{company.name}}</span></td>
+                                <td><span class="user-role">{{company.address}}</span></td>
+                                <td><span class="user-role">{{company.email}}</span></td>
+                                <td>
+                                    <form method="POST">
+                                        <input type="hidden" name="_token"
+                                            value="FsM848SirJ6QKs0CFziA4j7n5KkBtIkiG32c4lng">
+                                        <label class="switch">
+                                            <input class="user" type="checkbox" data-id="2"
+                                                ng-click="changeToggleSuperCompany(company.id)"
+                                                ng-model="company.status" name="status" checked="">
+                                            <span class="knob"></span>
+                                        </label>
+                                    </form>
+                                </td>
+
+                                <td>
+                                    <span class="me-2"><a title="Edit" ng-click="editCompany(company.id)"
+                                            class="btn btn-action btn-action-edit"><span
+                                                class="lbl-btn-action"></span><span
+                                                class="icon-common icon-btn icon-edit"></span></a></span>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="body-area" ng-show="views.add">
+                <div class="body-area-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="body-area-tittle">
+                                <span>Add Company</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="body-area-action">
+                                <a ng-click="changeView('list')" class="float-end btn btn-icon btn-back me-2"
+                                    title="Return"><span class="icon-common icon-back icon-btn-circle"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="body-area-content">
+                    <div class="add-form-container">
+                        <form class="form-horizontal" name="addAdmin" role="form" ng-submit="addSaveCompany()">
+                            <div class="row">
+                                <div class="col-lg-2 col-sm-2">
+                                    <div class="form-group">
+                                        <label class="text-dark lbl-medium" for="planName">
+                                            Name: <span class="text-danger">*</span>
+                                        </label>
+                                        <input name="name" type="text" ng-model="form.name" class="form-control"
+                                            placeholder="Enter Name" required />
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-sm-8">
+                                    <div class="form-group">
+                                        <label class="text-dark lbl-medium" for="planName">
+                                            Address: <span class="text-danger">*</span>
+                                        </label>
+                                        <input name="address" type="text" ng-model="form.address" class="form-control"
+                                            placeholder="Enter Address" required />
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-2 col-sm-2">
+                                    <div class="form-group">
+                                        <label class="text-dark lbl-medium" for="planName">
+                                            Email: <span class="text-danger">*</span>
+                                        </label>
+                                        <input name="email" type="email" ng-model="form.email" class="form-control"
+                                            placeholder="Enter Email" required />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="reset" class="btn btn-secondary btn-modal-action"
+                                    data-bs-dismiss="modal">Reset</button>
+                                <button type="submit" class="btn btn-success btn-modal-action">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="body-area" ng-show="views.edit">
+                <div class="body-area-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="body-area-tittle">
+                                <span class="icon-common icon-edit-new icon-header"></span>
+                                <span>Edit Company</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="body-area-action">
+                                <a ng-click="changeView('list')" class="float-end btn btn-icon btn-back me-2"
+                                    title="Return"><span class="icon-common icon-back icon-btn-circle"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="body-area-content">
+                    <div class="add-form-container">
+                        <form class="form-horizontal" name="addAdmin" role="form" ng-submit="editSaveCompany()">
+                            <div class="row">
+                                <div class="col-lg-2 col-sm-2">
+                                    <div class="form-group">
+                                        <label class="text-dark lbl-medium" for="planName">
+                                            Name: <span class="text-danger">*</span>
+                                        </label>
+                                        <input name="name" type="text" ng-model="form.name" class="form-control"
+                                            placeholder="Enter Name" required />
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-sm-8">
+                                    <div class="form-group">
+                                        <label class="text-dark lbl-medium" for="planName">
+                                            Address: <span class="text-danger">*</span>
+                                        </label>
+                                        <input name="address" type="text" ng-model="form.address" class="form-control"
+                                            placeholder="Enter Address" required />
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-2">
+                                    <div class="form-group">
+                                        <label class="text-dark lbl-medium" for="planName">
+                                            Email: <span class="text-danger">*</span>
+                                        </label>
+                                        <input name="email" type="email" ng-model="form.email" class="form-control"
+                                            placeholder="Enter Email" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="reset" class="btn btn-secondary btn-modal-action"
+                                    data-bs-dismiss="modal">Reset</button>
+                                <button type="submit" class="btn btn-success btn-modal-action">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </section>
+    <script src="private/superadmin.js"></script>
+
+</body>
+
+</html>

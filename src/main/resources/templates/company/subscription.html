@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html
+    th:replace="~{base-layout :: layout(~{::title},~{::style} != null ? ~{::style} : null,~{::section},~{::script} != null ? ~{::script} : null)}">
+
+
+<head>
+    <title>Subscription</title>
+</head>
+
+<body>
+
+    <section>
+
+        <div ng-app="CompanyManagment" ng-controller="SubscriptionController">
+            <div class="breadcrumb-container">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a th:href="@{/home-company}">
+                                <span class="icon-common icon-breadcrumb icon-dashboard"></span><span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <span class="icon-common icon-breadcrumb icon-subscription"></span><span>Subscription</span>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="body-area" ng-show="views.list">
+                <div class="body-area-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="body-area-tittle">Subscriptions</div>
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+                </div>
+                <div class="body-area-content">
+                    <div class="user-table-container">
+                        <table class="user-table-view" id="">
+                            <tr class="table-head-primary">
+                                <th>SL No.</th>
+                                <th>Name</th>
+                                <th>Detail</th>
+                                <th>Mobile Access</th>
+                                <th>Document Upload</th>
+                                <th>Validity</th>
+                                <th>Note</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr ng-repeat="subscription in subscriptions">
+                                <td>{{$index + 1}}</td>
+                                <td><span class="user-role">{{subscription.planName}}</span></td>
+                                <td>
+                                    <div>
+                                        <span class="user-details-caption">Company: </span>
+                                        <span class="user-details-value">{{subscription.company}}</span>
+                                    </div>
+                                    <div>
+
+                                        <span class="user-details-caption">Asset: </span>
+                                        <span class="user-details-value">{{subscription.asset}}</span>
+                                    </div>
+                                    <div>
+
+                                        <span class="user-details-caption">Super Admin: </span>
+                                        <span class="user-details-value">{{subscription.superAdmin}}</span>
+                                    </div>
+                                    <div>
+                                        <span class="user-details-caption">User: </span>
+                                        <span class="user-details-value">{{subscription.user}}</span>
+                                    </div>
+                                    <div>
+                                        <span class="user-details-caption">price: ₹</span>
+                                        <span class="user-details-value">{{subscription.price}}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <span ng-if="subscription.mobileAccess==true">YES</span>
+                                        <span ng-if="subscription.mobileAccess==false">NO</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <span ng-if="subscription.docUpload==true">YES</span>
+                                        <span ng-if="subscription.docUpload==false">NO</span>
+                                    </div>
+                                </td>
+                                <td><span class="user-role">{{subscription.validity}}</span></td>
+                                <td><span class="user-role">{{subscription.note}}</span></td>
+                                <td>
+                                    <span class="me-2"><a title="Edit" ng-click="editSubscription(subscription.id)"
+                                            class="btn btn-action btn-action-edit"><span
+                                                class="lbl-btn-action"></span><span
+                                                class="icon-common icon-btn icon-edit"></span></a></span>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="subscription_modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">
+                                <span ng-if="form.id == null ||form.id == undefined">Asset: Finance Entry</span>
+                                <span ng-if="form.id != null ||form.id != undefined">Asset: Finance Edit</span>
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span class="icon-common icon-modal-header-action  icon-x"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" name="addAdmin" role="form" ng-submit="editSaveSubscription()"
+                                autocomplete="off">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="text-dark lbl-medium" for="planName">
+                                                Plan Name: <span class="text-danger">*</span>
+                                            </label>
+                                            <input name="planName" type="text" ng-model="form.planName"
+                                                class="form-control" placeholder="Enter Plan Name" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="text-dark lbl-medium" for="planName">
+                                                Company: <span class="text-danger">*</span>
+                                            </label>
+                                            <input name="company" type="number" ng-model="form.company"
+                                                class="form-control" placeholder="Enter Asset" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="text-dark lbl-medium" for="planName">
+                                                Asset: <span class="text-danger">*</span>
+                                            </label>
+                                            <input name="asset" type="number" ng-model="form.asset" class="form-control"
+                                                placeholder="Enter Asset" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="text-dark lbl-medium" for="planName">
+                                                Super Admin: <span class="text-danger">*</span>
+                                            </label>
+                                            <input name="asset" type="number" ng-model="form.superAdmin"
+                                                class="form-control" placeholder="Enter Asset" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="text-dark lbl-medium" for="planName">
+                                                User: <span class="text-danger">*</span>
+                                            </label>
+                                            <input name="asset" type="number" ng-model="form.user" class="form-control"
+                                                placeholder="Enter Asset" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="text-dark lbl-medium" for="planName">
+                                                Price: <span class="text-danger">*</span>
+                                            </label>
+                                            <input name="price" type="number" ng-model="form.price" class="form-control"
+                                                placeholder="Enter Price" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="text-dark lbl-medium" for="planName">
+                                                Validity(Year): <span class="text-danger">*</span>
+                                            </label>
+                                            <input name="price" type="number" ng-model="form.validity"
+                                                class="form-control" placeholder="Enter Price" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="text-dark lbl-medium" for="planName">
+                                                Mobile Access: <span class="text-danger">*</span>
+                                            </label>
+                                            <select name="depreciableAsset" ng-model="form.mobileAccess"
+                                                class="form-control select2" required>
+                                                <option disabled></option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="text-dark lbl-medium" for="planName">
+                                                Document Upload: <span class="text-danger">*</span>
+                                            </label>
+                                            <select name="depreciableAsset" ng-model="form.docUpload"
+                                                class="form-control select2" required>
+                                                <option disabled></option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="text-dark lbl-medium" for="planName">
+                                                Note: <span class="text-danger">*</span>
+                                            </label>
+                                            <input name="note" type="text" ng-model="form.note" class="form-control"
+                                                placeholder="Enter Note" required />
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary btn-modal-action"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-success btn-modal-action">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+    <script src="private/company.js"></script>
+
+</body>
+
+</html>

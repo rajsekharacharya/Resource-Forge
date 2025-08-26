@@ -1,0 +1,49 @@
+{
+  "properties": [
+    {
+      "name": "access.url",
+      "type": "java.lang.String",
+      "description": "Application URL"
+    },
+    {
+      "name": "springdoc.api-docs.description",
+      "type": "java.lang.String",
+      "description": "A description for 'springdoc.api-docs.description'"
+    },
+    {
+      "name": "springdoc.exclude-paths",
+      "type": "java.lang.String",
+      "description": "A description for 'springdoc.exclude-paths'"
+    },
+    {
+      "name": "springdoc.api-docs.title",
+      "type": "java.lang.String",
+      "description": "A description for 'springdoc.api-docs.title'"
+    },
+    {
+      "name": "app.maintenance.enabled",
+      "type": "java.lang.String",
+      "description": "A description for 'app.maintenance.enabled'"
+    },
+    {
+      "name": "server.display-name",
+      "type": "java.lang.String",
+      "description": "A description for 'server.display-name'"
+    },
+    {
+      "name": "file.upload-dir",
+      "type": "java.lang.String",
+      "description": "A description for 'file.upload-dir'"
+    },
+    {
+      "name": "file.upload-dir.linux",
+      "type": "java.lang.String",
+      "description": "A description for 'file.upload-dir.linux'"
+    },
+    {
+      "name": "file.upload-dir.windows",
+      "type": "java.lang.String",
+      "description": "A description for 'file.upload-dir.windows'"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+1. install pip install pyinstaller
+2. python -m PyInstaller --onefile --icon=asset-agent.ico SystemInfoCollector.py
+
+
+
+
+python -m PyInstaller --onefile --icon=asset-agent.ico --manifest=admin.manifest --noupx --noconsole SystemInfoCollector.py

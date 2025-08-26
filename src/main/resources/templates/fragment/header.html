@@ -1,0 +1,116 @@
+<!-- New UI plugins -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="assets/css/flatpickr.min.css" rel="stylesheet">
+<link href="assets/css/pikaday.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<link href="assets/css/site.css" rel="stylesheet">
+<link
+    href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-1.13.6/b-2.4.2/sl-1.7.0/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/sb-1.6.0/sp-2.2.0/datatables.min.css"
+    rel="stylesheet">
+<link href="assets/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- linking fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+<link rel="shortcut icon" href="assets/icons/fav-icon/favicon.ico" />
+</head>
+
+<body>
+    <!-- <div class="main-wrapper hover-menu-open" id="mainWrapper">         -->
+    <div class="main-wrapper menu-close" id="mainWrapper">        
+        <div class="header">
+            <div class="logo-container">
+                <div class="nav-toggle-container" id="navToggler">
+                    <span class="toggler-icon-top"></span> <span class="toggler-icon-middle"></span> <span
+                        class="toggler-icon-bottom"></span>
+                </div>
+                <img src="assets/images/logo.png" alt="" srcset="" class="nav-logo">
+            </div>
+            <img src="assets/images/logo.png" alt="" srcset="" class="header-logo">
+            <div class="greetings-container">
+                <div class="d-none d-xl-flex">
+                    <span class="lbl-greetings" id="greetingSpan">, </span>
+                    <span class="greetings-role capitalize">&nbsp;<span
+                            th:text="${#authentication.getPrincipal().getUser().getName}"></span></span>
+                </div>
+                <div id="lblShowDate" class="d-none d-xl-flex"></div>
+            </div>
+            <div class="toolbar-container">
+                <div class="toolbar-item">
+                    <div class="datepicker-container">
+                        <div class="dropdown">
+                            <a class="toolbar-link" href="#" role="button" id="dropdowncal"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="icon-common icon-topbar icon-calendar"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="toolbar-item">
+                    <div class="notification-container">
+                        <div class="dropdown">
+                            <a class="toolbar-link" href="#" role="button" id="dropdownMenuLink"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="icon-common icon-topbar icon-notification">
+                            </a>
+                            <ul class="dropdown-menu notification-details-container" aria-labelledby="dropdownMenuLink">
+                                <div class="notification-dropdown-title">
+                                    <div class="notification-view-icon-container">
+                                        <span class="icon-common icon-notification-details"></span>
+                                    </div>
+                                    <div id="notifications" class="lbl-notification-details">No New Notification</div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="toolbar-item">
+                    <div class="profile-container">
+                        <div class="dropdown">
+                            <a class="toolbar-link" href="#" role="button" id="dropdownMenuLink"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <div>
+                                    <!-- <span class="icon-profile-container">
+                                        <img alt="Logo" th:src="@{/uploads/{image}(image=${#authentication.getPrincipal().getUser().getImageLink().substring(10)})}">
+                                    </span> -->
+                                    <span class="icon-profile-container">
+                                        <img alt="Logo" th:if="${#authentication.getPrincipal().getUser().getImageLink() != null and #authentication.getPrincipal().getUser().getImageLink().length() > 10}" th:src="@{${#authentication.getPrincipal().getUser().getImageLink()}}">
+                                        <img alt="Default Logo" th:unless="${#authentication.getPrincipal().getUser().getImageLink() != null and #authentication.getPrincipal().getUser().getImageLink().length() > 10}" src="assets/icons/user.svg">
+                                    </span>
+                                    
+                                </div>
+                                <div class="profile-name-container">
+                                    <span class="profile-name"
+                                        th:text="${#authentication.getPrincipal().getUser().getName}"></span>
+                                    <span class="icon-common icon-toolbar icon-chevron"></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu profile-details-container" aria-labelledby="dropdownMenuLink"
+                                style="transform: translate(-12px, 60px) !important;">
+                                <li class="media dropdown-item"><a class="profile-container">
+                                        <span class="icon-common icon-header-dropdown-items icon-profile"></span>
+                                        <span class="lbl-header-menu">My Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="dv-separator mt-1 mb-1"></div>
+                                </li>
+                                <li class="media dropdown-item"><a th:href="@{/logout}" class="logout-container"> <span
+                                            class="icon-common icon-header-dropdown-items icon-logout"></span>
+                                        <span class="lbl-header-menu">Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

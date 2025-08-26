@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html
+    th:replace="~{base-layout :: layout(~{::title},~{::style} != null ? ~{::style} : null,~{::section},~{::script} != null ? ~{::script} : null)}">
+
+<head>
+    <title>Client</title>
+    <style>
+        .download-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .download-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 14px 30px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+
+        .download-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .note-box {
+            margin-top: 25px;
+            color: #444;
+            text-align: left;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            max-width: 650px;
+        }
+
+        .note-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+
+        .note-box li::before {
+            content: "• ";
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+        <div ng-app="ClientManagment" ng-controller="ClientController">
+            <div class="breadcrumb-container">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a th:href="@{/home}">
+                                <span class="icon-common icon-breadcrumb icon-dashboard"></span><span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <span class="icon-common icon-breadcrumb icon-privacy-policy"></span><span>Client</span>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="download-container">
+                <button ng-click="excelDownload()" class="download-button">
+                    <img src="https://cdn-icons-png.flaticon.com/512/724/724933.png" alt="Download Icon" class="download-icon">
+                    Download
+                </button>
+
+                <div class="note-box">
+                    <p>🔒 <strong>Note:</strong></p>
+                    <ul>
+                        <li>Do <strong>not change the file name</strong> – it is unique to the company.</li>
+                        <li>Run this on the <strong>client system</strong> to retrieve system information.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="private/client.js"></script>
+</body>
+
+</html>

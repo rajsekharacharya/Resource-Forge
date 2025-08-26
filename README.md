@@ -135,7 +135,7 @@ Automates registration by collecting Windows specs and posting to `/asset/api/sy
 
 ## 📥 Installation Guide
 
-1. **Clone**: `git clone https://github.com/rajsekharacharya/Resource-Forge` 📥
+1. **Clone**: `git clone https://github.com/rajsekharacharya/Resource-Forge.git` 📥
 2. **Backend**:
    - Edit `application.properties` for DB 🔧
    - `mvn clean install` 🛠️
